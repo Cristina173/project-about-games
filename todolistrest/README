@@ -1,0 +1,33 @@
+Aplicatii Spring Boot
+- Generam un proiect folosind spring initilizr sau intellij sau manual configurand pom.xml
+- In pom xml adaugam dependeintele necesare (de exemplu dependinte de conectare la baza de date)
+Exemplu:
+<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+- Configuram application.properties pentru a crea conexiunea la baza de date
+- Stabilim arhitectura proiectului(majoritatea proiectelor au o arhitectura de tip N layer)
+    In cazul nostru N layere sunt defapt 3 layere
+    Packages:
+    * controller -> punct de intrare in aplicatie
+    * service -> business logic
+    * repository -> interactiune cu DB
+    extra:
+    * entity -> obiectele model (de exemplu toate obiectele care au un table in baza de date)
+    * configuration -> in package-ul de configuration tinem clasele de configurare pentru spring. De exemplu, bean-uri care
+    sunt declarate prin java method
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+                    -> configurari pentru spring security
+                    -> configurari catre o a 2-a baza de date
+    * exceptions -> definirea exceptiilor custom, eventual si RestControllerAdvice handler.
+    * dto -> definirea obiectelor de transfer
+    * util -> Clase utilitare
+
+ In spring avem :
+ * main class (clasa care este annotata cu @SpringBootApplication) -> clasa se ocupa cu pornirea efectiva a aplicatiei si
+ a serverului          
